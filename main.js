@@ -5,7 +5,11 @@ let flag = true;
 let textPosition = 0;
 const input = document.getElementById("input");
 const btn = document.getElementById("btn")
+const attention = document.getElementById("stop");
 let isActive = false;
+
+area.innerHTML = ""
+
 
 input.addEventListener("keydown",(event) =>{
     if(event.key === "Enter"){
@@ -17,10 +21,17 @@ btn.addEventListener("click", () => {
     if (!isActive) {
         inputText();
         isActive = true;
-    } else {
-        alert("Дождитесь конца функции")
-    }
+        btn.disabled = "true"
+        btn.style.cursor = "not-allowed";
+        btn.classList.add("off");
+    } 
+    
+
+    
 } )
+
+
+
 
 // function loadQuote() {
 //     const url = "https://api.quotable.io/random";
@@ -58,6 +69,9 @@ function textWriter() {
         textPosition = 0;
         flag = true;
         isActive = false;
+        btn.style.cursor = "pointer";
+        btn.disabled = "";
+        btn.classList.remove("off")
     }   
     
 }
@@ -73,7 +87,6 @@ async function inputText() {
     await textWriter();
     
 }
-
 
 
 
